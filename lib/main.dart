@@ -17,7 +17,7 @@ void main() {
       debugShowCheckedModeBanner: false,
       theme: CMAppThemes.light,
       darkTheme: CMAppThemes.dark,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       initialBinding: InitialBindings(),
     ),
   );

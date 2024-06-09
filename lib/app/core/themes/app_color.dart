@@ -4,18 +4,18 @@ class CMColors {
   CMColors._();
 
   static const MaterialColor customThemeColorSwatch = MaterialColor(
-    0xff007df2,
+    0xFF000000,
     {
-      50: Color(0xff0071da), //10%//
-      100: Color(0xff0064c2), //20%//
-      200: Color(0xff0058a9), //30%//
-      300: Color(0xff004b91), //40%//
-      400: Color(0xff003f79), //50%//
-      500: Color(0xff003261), //60%//
-      600: Color(0xff002549), //70%//
-      700: Color(0xff001930), //80%//
-      800: Color(0xff000c18), //90%//
-      900: Color(0xff000000), //100%//
+      50: Color.fromRGBO(0, 0, 0, .1),
+      100: Color.fromRGBO(0, 0, 0, .2),
+      200: Color.fromRGBO(0, 0, 0, .3),
+      300: Color.fromRGBO(0, 0, 0, .4),
+      400: Color.fromRGBO(0, 0, 0, .5),
+      500: Color.fromRGBO(0, 0, 0, .6),
+      600: Color.fromRGBO(0, 0, 0, .7),
+      700: Color.fromRGBO(0, 0, 0, .8),
+      800: Color.fromRGBO(0, 0, 0, .9),
+      900: Color.fromRGBO(0, 0, 0, 1.0),
     },
   );
 

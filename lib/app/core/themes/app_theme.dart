@@ -34,6 +34,15 @@ class CMAppThemes {
     colorScheme: ColorScheme.fromSwatch(
       primarySwatch: CMColors.customThemeColorSwatch,
     ),
-    textTheme: ThemeData.dark().textTheme.apply(fontFamily: 'Poppins'),
+    brightness: Brightness.dark,
+    textTheme: ThemeData.dark().textTheme.apply(
+          fontFamily: 'Poppins',
+          bodyColor: Colors.white,
+        ),
+    scaffoldBackgroundColor: Colors.black,
+    appBarTheme: const AppBarTheme(
+      color: Colors.black,
+      surfaceTintColor: Colors.black,
+    ),
   );
 }

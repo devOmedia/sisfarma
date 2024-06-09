@@ -13,69 +13,10 @@ dependencies:
   flutter_native_splash: ^2.4.0
   # Device Information
   device_info_plus: ^10.0.1
-  # Device Bio Matic Authentication
-  local_auth: ^2.2.0
-  # Badge
-  badges: ^3.1.2
-  # Unique ID
-  uuid: ^4.3.3
-  # Animation
-  lottie: ^3.1.0
-  # Env file
-  flutter_dotenv: ^5.1.0
-  # Show timeline
-  timeline_tile: ^2.0.0
-  # Image Manipulation
-  image_cropper: ^5.0.1
-  image_picker: ^1.0.7
-  cached_network_image: ^3.3.1
-  flutter_svg: ^2.0.10+1
   # State Management
   get_cli: ^1.8.1
   get: ^4.6.6
-  # Local Storage
-  shared_preferences: ^2.2.2
-  # Date Formatting
-  intl: ^0.18.0
-  # API Calling
-  dio: ^5.4.3+1
-  pretty_dio_logger: ^1.3.1
-  # Video Player
-  video_player: ^2.8.3
-  chewie: ^1.7.5
-  #Audio Player
-  chewie_audio: ^1.5.0
-  # Share
-  share_plus: ^8.0.2
-  # Rendering HTML
-  html: ^0.15.4
-  flutter_html: ^3.0.0-beta.2
-  # Show Text more or less
-  readmore: ^3.0.0
-  # Slider
-  carousel_slider: ^4.2.1
-  font_awesome_flutter: ^10.7.0
-  flutter_rating_bar: ^4.0.1
-  # File download
-  flutter_downloader: ^1.11.6
-  path_provider: ^2.1.2
-  permission_handler: ^11.3.1
-  # Go to external weblink
-  url_launcher: ^6.2.5
-  # Pick any file
-  file_picker: ^8.0.0+1
-  path: ^1.9.0
-  percent_indicator: ^4.2.3
-  # Phone Verification
-  pinput: ^4.0.0
-  # credit card
-  u_credit_card: ^1.3.0
-  #google map
-  google_maps_flutter: ^2.6.1
-  geolocator: ^12.0.0
-  #text tagline
-  textfield_tags: ^3.0.1
-  dropdown_button2: ^2.3.9
+
   
 
 dev_dependencies: 
