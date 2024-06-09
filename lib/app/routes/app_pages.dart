@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/listSection/bindings/list_section_binding.dart';
+import '../modules/listSection/views/list_section_view.dart';
 import '../modules/menuSection/bindings/menu_section_binding.dart';
 import '../modules/menuSection/views/menu_section_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.SETTING,
       page: () => const SettingView(),
       binding: SettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_SECTION,
+      page: () => const ListSectionView(),
+      binding: ListSectionBinding(),
     ),
   ];
 }
