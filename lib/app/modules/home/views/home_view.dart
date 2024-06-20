@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sisfarma/app/core/utils/dimensions.dart';
@@ -9,6 +8,7 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,13 +40,136 @@ class HomeView extends GetView<HomeController> {
       body: Column(
         children: [
           const Expanded(child: SizedBox.expand()),
-          navMenuSection(),
+          navMenuSection(context),
         ],
       ),
     );
   }
 
-  Widget navMenuSection() {
+  showOptionsBtns(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: Container(
+          padding: EdgeInsets.all(CmDimensions.defaultPaddingMargin),
+          width: Get.width,
+          height: CmDimensions.heightHalf,
+          child: Obx(() {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'ADD PASSES/CARDS',
+                  style: TextStyle(
+                    fontSize: CmDimensions.fontSizeDefault * 2,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                optionsItems(
+                  title: 'Scan Barcode',
+                  isChecked: controller.isBarCode.value,
+                  onPressed: (_) => controller.onOptionButtonTrigger('barcode'),
+                ),
+                optionsItems(
+                  title: 'Take image of card',
+                  isChecked: controller.isCardImage.value,
+                  onPressed: (_) =>
+                      controller.onOptionButtonTrigger('imageOfCard'),
+                ),
+                optionsItems(
+                  title: 'Open PDF or image',
+                  isChecked: controller.isOpenPdf.value,
+                  onPressed: (_) =>
+                      controller.onOptionButtonTrigger('openPdforImage'),
+                ),
+                optionsItems(
+                  title: 'Create card manually',
+                  isChecked: controller.isManuallyCard.value,
+                  onPressed: (_) =>
+                      controller.onOptionButtonTrigger('manualCard'),
+                ),
+                optionsItems(
+                  title: 'Pick from phone storage',
+                  isChecked: controller.isPhoneStorage.value,
+                  onPressed: (_) =>
+                      controller.onOptionButtonTrigger('phoneStorage'),
+                ),
+                ListTile(
+                  contentPadding: EdgeInsets.symmetric(
+                      horizontal: CmDimensions.defaultPaddingMargin),
+                  leading: Transform.scale(
+                    scale: 1.5,
+                    child: Checkbox(
+                      value: controller.isDeletePasses.value,
+                      shape: const RoundedRectangleBorder(),
+                      onChanged: (value) => controller.isDeletePasses.value =
+                          !controller.isDeletePasses.value,
+                    ),
+                  ),
+                  title: const Text(
+                    'Include deleted passes',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () => Get.back(),
+                      child: const Text(
+                        'Cancel',
+                        style: TextStyle(
+                          color: CMColors.secondaryColor,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'Ok',
+                        style: TextStyle(
+                          color: CMColors.secondaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            );
+          }),
+        ),
+      ),
+    );
+  }
+
+  ListTile optionsItems({title, isChecked, onPressed}) {
+    return ListTile(
+      contentPadding:
+          EdgeInsets.symmetric(horizontal: CmDimensions.defaultPaddingMargin),
+      leading: Transform.scale(
+        scale: 1.5,
+        child: Checkbox(
+          value: isChecked,
+          shape: const CircleBorder(),
+          onChanged: onPressed,
+        ),
+      ),
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget navMenuSection(context) {
     return Container(
       height: 10.0.hp,
       color: Colors.grey.shade900,
@@ -68,7 +191,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 shape: BoxShape.circle),
             child: IconButton(
-              onPressed: null,
+              onPressed: () => showOptionsBtns(context),
               icon: Icon(
                 Icons.add,
                 color: CMColors.secondaryColor,

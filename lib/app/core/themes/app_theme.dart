@@ -39,6 +39,12 @@ class CMAppThemes {
           fontFamily: 'Poppins',
           bodyColor: Colors.white,
         ),
+    checkboxTheme: CheckboxThemeData(
+      checkColor: MaterialStateProperty.all(Colors.white),
+      fillColor: MaterialStateProperty.all(Colors.orange),
+
+      //shape: const CircleBorder(),
+    ),
     scaffoldBackgroundColor: Colors.black,
     appBarTheme: const AppBarTheme(
       color: Colors.black,
