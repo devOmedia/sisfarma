@@ -12,37 +12,43 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'List',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        centerTitle: true,
-        actions: [
-          GestureDetector(
-            child: Container(
-              margin: const EdgeInsets.only(right: 8),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: CMColors.secondaryColor,
-                ),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.question_mark,
-                color: CMColors.secondaryColor,
-                size: CmDimensions.defaultIcon,
-              ),
-            ),
-          )
-        ],
-      ),
+      key: controller.scaffoldKey,
+      appBar: appBar(context),
+      drawer: Drawer(),
       body: Column(
         children: [
           const Expanded(child: SizedBox.expand()),
           navMenuSection(context),
         ],
       ),
+    );
+  }
+
+  AppBar appBar(BuildContext context) {
+    return AppBar(
+      title: Text(
+        'List',
+        style: Theme.of(context).textTheme.headlineSmall,
+      ),
+      centerTitle: true,
+      // actions: [
+      //   GestureDetector(
+      //     child: Container(
+      //       margin: const EdgeInsets.only(right: 8),
+      //       decoration: BoxDecoration(
+      //         border: Border.all(
+      //           color: CMColors.secondaryColor,
+      //         ),
+      //         shape: BoxShape.circle,
+      //       ),
+      //       child: Icon(
+      //         Icons.question_mark,
+      //         color: CMColors.secondaryColor,
+      //         size: CmDimensions.defaultIcon,
+      //       ),
+      //     ),
+      //   )
+      // ],
     );
   }
 
@@ -56,7 +62,7 @@ class HomeView extends GetView<HomeController> {
         child: Container(
           padding: EdgeInsets.all(CmDimensions.defaultPaddingMargin),
           width: Get.width,
-          height: CmDimensions.heightHalf,
+          height: CmDimensions.heightOneOfThree+5.0.hp,
           child: Obx(() {
             return Column(
               mainAxisSize: MainAxisSize.min,
@@ -73,18 +79,18 @@ class HomeView extends GetView<HomeController> {
                   isChecked: controller.isBarCode.value,
                   onPressed: (_) => controller.onOptionButtonTrigger('barcode'),
                 ),
-                optionsItems(
-                  title: 'Take image of card',
-                  isChecked: controller.isCardImage.value,
-                  onPressed: (_) =>
-                      controller.onOptionButtonTrigger('imageOfCard'),
-                ),
-                optionsItems(
-                  title: 'Open PDF or image',
-                  isChecked: controller.isOpenPdf.value,
-                  onPressed: (_) =>
-                      controller.onOptionButtonTrigger('openPdforImage'),
-                ),
+                // optionsItems(
+                //   title: 'Take image of card',
+                //   isChecked: controller.isCardImage.value,
+                //   onPressed: (_) =>
+                //       controller.onOptionButtonTrigger('imageOfCard'),
+                // ),
+                // optionsItems(
+                //   title: 'Open PDF or image',
+                //   isChecked: controller.isOpenPdf.value,
+                //   onPressed: (_) =>
+                //       controller.onOptionButtonTrigger('openPdforImage'),
+                // ),
                 optionsItems(
                   title: 'Create card manually',
                   isChecked: controller.isManuallyCard.value,
@@ -177,7 +183,7 @@ class HomeView extends GetView<HomeController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            onPressed: null,
+            onPressed: () => controller.scaffoldKey.currentState?.openDrawer(),
             icon: Icon(
               Icons.menu,
               color: CMColors.secondaryColor,
