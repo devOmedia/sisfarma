@@ -1,9 +1,11 @@
 import 'dart:developer';
 
+import 'package:barcode/barcode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 
 class HomeController extends GetxController {
   RxBool isBarCode = false.obs;
@@ -25,6 +27,12 @@ class HomeController extends GetxController {
 
   //barcode
   RxString barCodeResult = ''.obs;
+  RxString barcodeImage = ''.obs;
+
+  ///controllers
+  TextEditingController nameCtr = TextEditingController();
+  TextEditingController surNameCtr = TextEditingController();
+  TextEditingController eanCtr = TextEditingController();
 
   @override
   void onInit() {
@@ -103,11 +111,29 @@ class HomeController extends GetxController {
           true, // Whether to show the flash icon
           ScanMode.BARCODE // Scan mode (QR or Barcode)
           );
-      barCodeResult.value = barcodeScanRes;
-      log('Barcode scan result: $barcodeScanRes');
+      // Validate the barcode result
+      if (barcodeScanRes != '-1' && barcodeScanRes.isNotEmpty) {
+        barCodeResult.value = barcodeScanRes;
+        log('Barcode scan result: $barcodeScanRes');
+        generateBarcode(barcodeScanRes);
+        Get.snackbar('Success', 'Valid barcode scanned: $barcodeScanRes');
+      } else {
+        Get.snackbar('Failed', 'Invalid barcode result.');
+      }
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
       Get.snackbar('Failed', 'Failed to get platform version.');
     }
+  }
+
+  void generateBarcode(String data) {
+    final bc = Barcode.code128();
+    barcodeImage.value = bc.toSvg(data, width: 300, height: 80);
+    log('----------------------->>>> ${barcodeImage.value}');
+
+    // Convert SVG to image
+    // final image = im.decodeSvg(svg);
+    // final png = im.encodePng(image!);
+    // generatedBarcode.value = Uint8List.fromList(png);
   }
 }
